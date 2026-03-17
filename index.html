@@ -125,7 +125,10 @@ async function xtreamLogin(){
     updateAccountInfo();
     try{
         let api=`${host}/player_api.php?username=${user}&password=${pass}&action=get_live_streams`;
-        let res=await fetch(proxy+api);
+        // استخدام بروكسي جديد يتجاوز حظر سيرفرات الاكستريم
+        let proxyUrl = "https://api.codetabs.com/v1/proxy?quest=" + api;
+        
+        let res=await fetch(proxyUrl);
         let data=await res.json();
         liveChannels=[];
         data.forEach(c=>{liveChannels.push({name:c.name,logo:c.stream_icon,url:`${host}/live/${user}/${pass}/${c.stream_id}.m3u8`});});
@@ -134,14 +137,17 @@ async function xtreamLogin(){
         document.getElementById("app").style.display="flex";
         renderChannels(liveChannels);
         
-        // التركيز على أول قناة بعد التحميل
         setTimeout(() => {
             const firstChannel = document.querySelector('.channel');
             if(firstChannel) firstChannel.focus();
         }, 500);
 
-    }catch(e){alert("خطأ في الاتصال بالسيرفر"); console.log(e);}
+    }catch(e){
+        alert("خطأ في الاتصال بالسيرفر"); 
+        console.log(e);
+    }
 }
+
 
 async function refreshAccount(){if(host && user && pass){xtreamLogin();}}
 
