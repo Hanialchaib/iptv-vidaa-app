@@ -1,0 +1,22 @@
+{
+  "name": "IPTV Ultra PRO X",
+  "short_name": "IPTV PRO",
+  "description": "تطبيق تشغيل قنوات IPTV المخصص لشاشات التلفزيون الذكية",
+  "start_url": "./index.html",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#0b0f2a",
+  "theme_color": "#0b0f2a",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
